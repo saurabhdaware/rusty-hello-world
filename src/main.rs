@@ -1,5 +1,10 @@
+use time::util;
+use std::io;
+
 fn main() {
-  let a = 3;
-  let b = 9;
-  println!("Addition of {} and {} is {}", a, b, a + b);
+  println!("Enter year:");
+  let mut n = String::new();
+  io::stdin().read_line(&mut n).expect("could not read a valid input");
+  let year:i32 = n.trim().parse().expect("invalid input");
+  println!("There are {} days in year {}", util::days_in_year(year), year);
 }
