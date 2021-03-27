@@ -1,20 +1,23 @@
-// use time::util;
-// use std::io;
+use std::time::{SystemTime};
+use std::fs;
+use std::path::Path;
+
 
 fn main() {
-  let mut num = 0;
-  println!("EVEN NUMBERSS!!");
-  loop {
-    println!("{}", num);
-    if num >= 10 {
-      break;
+  let now = SystemTime::now();
+
+  let path = Path::new("./src/hello.md");
+
+  let data = fs::read_to_string(path).expect("Things didn't go well while reading");
+  println!("{}", data);
+
+  match now.elapsed() {
+    Ok(elapsed) => {
+      println!("{}", elapsed.as_millis());
     }
-    num += 2;
+    Err(e) => {
+        // an error occurred!
+        println!("Error: {:?}", e);
+    }
   }
-
-  println!("\nFirst 10 numbers!!");
-  for z in 1..11 {
-    println!("FOR: {}", z);
-  }
-
 }
